@@ -1,3 +1,5 @@
+using MarinaVolkovaKT_42_23.Database;
+using Microsoft.EntityFrameworkCore;
 using NLog;
 using NLog.Web;
 
@@ -10,6 +12,10 @@ try
 
     // Add services to the container.
     builder.Services.AddControllers();
+
+    builder.Services.AddDbContext<UniversityDbContext>(options =>
+    options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+
     // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
     builder.Services.AddOpenApi();
     builder.Services.AddSwaggerGen();
